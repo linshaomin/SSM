@@ -26,6 +26,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public R<?> handleError(MissingServletRequestParameterException e) {
+        e.printStackTrace();
         String message = String.format("缺少必要的请求参数: %s", e.getParameterName());
         return R.fail(ResultCode.PARAM_MISS, message);
     }
@@ -34,6 +35,7 @@ public class RestExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public R<?> handleError(MethodArgumentTypeMismatchException e) {
+        e.printStackTrace();
         String message = String.format("请求参数格式错误: %s", e.getName());
         return R.fail(ResultCode.PARAM_TYPE_ERROR, message);
     }
@@ -41,12 +43,14 @@ public class RestExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public R<?> handleError(MethodArgumentNotValidException e) {
+        e.printStackTrace();
         return handleError(e.getBindingResult());
     }
 
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public R<?> handleError(BindException e) {
+        e.printStackTrace();
         return handleError(e.getBindingResult());
     }
 
@@ -58,30 +62,35 @@ public class RestExceptionHandler {
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public R<?> handleError(NoHandlerFoundException e) {
+        e.printStackTrace();
         return R.fail(ResultCode.NOT_FOUND, e.getMessage());
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public R<?> handleError(HttpMessageNotReadableException e) {
+        e.printStackTrace();
         return R.fail(ResultCode.MSG_NOT_READABLE, e.getMessage());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
     public R<?> handleError(HttpRequestMethodNotSupportedException e) {
+        e.printStackTrace();
         return R.fail(ResultCode.METHOD_NOT_SUPPORTED, e.getMessage());
     }
 
     @ExceptionHandler({ServiceException.class})
     @ResponseStatus(HttpStatus.OK)
     public R<?> handleError(ServiceException e) {
+        e.printStackTrace();
         return R.fail(e.getResultCode(), e.getMessage());
     }
 
     @ExceptionHandler({Throwable.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public R<?> handleError(Throwable e) {
+        e.printStackTrace();
         return R.fail(ResultCode.INTERNAL_SERVER_ERROR);
     }
 }

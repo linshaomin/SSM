@@ -28,7 +28,7 @@ public class AccountController {
     public R<PageInfo<Account>> findAll() {
         PageHelper.startPage(1, 3);
         List<Account> all = accountService.findAll();
-        PageInfo page = new PageInfo(all, 3);
+        PageInfo page = new PageInfo(all);
         return R.data(page);
     }
 
