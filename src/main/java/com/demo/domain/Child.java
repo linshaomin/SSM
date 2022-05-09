@@ -2,9 +2,6 @@ package com.demo.domain;
 
 /**
  * 儿童信息实体
- *
- * @author linsm
- * @date 2022-05-07 11:23
  */
 public class Child {
     private Integer id;
@@ -29,6 +26,19 @@ public class Child {
      * 联系电话
      */
     private String phone;
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
+    }
+
+    /**
+     * 家长
+     */
+    private String parent;
 
     public Integer getId() {
         return id;
