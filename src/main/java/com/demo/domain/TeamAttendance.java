@@ -51,11 +51,11 @@ public class TeamAttendance {
         this.needAttendance = needAttendance;
     }
 
-    public String getActualAttendance() {
+    public Integer getActualAttendance() {
         return actualAttendance;
     }
 
-    public void setActualAttendance(String actualAttendance) {
+    public void setActualAttendance(Integer actualAttendance) {
         this.actualAttendance = actualAttendance;
     }
 
@@ -70,7 +70,7 @@ public class TeamAttendance {
     /**
      * 实际出勤
      */
-    private String actualAttendance;
+    private Integer actualAttendance;
     /**
      * 日期
      */
